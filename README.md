@@ -1,4 +1,4 @@
-# jsRockPaperScissors
+# jsGrassWaterFire
 
 starting "first" js project
 
