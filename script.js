@@ -2,17 +2,19 @@ const choices = ["grass", "water", "fire"];
 const winners = [];
 
 function game() {
-    for(let i = 0; i <= 4; i++){
-        playRound();
+    for(let i = 1; i <= 5; i++){
+        playRound(i);
     }
+    document.querySelector("button").textContent = "Play Again";
     logWins();
 }
 
-function playRound() {
+function playRound(round) {
     const playerSelection = playerChoice();
     const botSelection = botChoice();
     const winner = winnerCheck(playerSelection, botSelection);
     winners.push(winner);
+    logRound(playerSelection, botSelection, winner, round)
 }
 
 function playerChoice() {
@@ -61,15 +63,28 @@ function winnerCheck(choiceP, choiceB){
         (choiceP === "water" && choiceB === "fire") ||
         (choiceP === "fire" && choiceB === "grass") 
     ){
-        return "Player Wins";
+        return "Player";
     } else{
-        return "Bot Wins";
+        return "Bot";
     }
 
 }
 
-function logWins(){
-    console.log(winners);
-};
+function logWins() {
+    let playerWins = winners.filter((item) => item == "Player").length;
+    let botWins = winners.filter((item) => item == "Bot").length;
+    let ties = winners.filter((item) => item == "Tie").length;
+    console.log("Results:");
+    console.log("Players Wins:", playerWins);
+    console.log("Bot Wins:", botWins);
+    console.log("Tie:", ties);
 
-game();
+}
+
+function logRound(playerChoice, botChoice, winner, round){
+    console.log("Round", round);
+    console.log("Player chose:", playerChoice);
+    console.log("Bot chose:", botChoice);
+    console.log(winner, "won the round");
+    console.log("---------------------");
+}
