@@ -1,14 +1,18 @@
-const choices = ["grass", "water", "fire"]
+const choices = ["grass", "water", "fire"];
+const winners = [];
 
 function game() {
-    playRound();
+    for(let i = 0; i <= 4; i++){
+        playRound();
+    }
+    logWins();
 }
 
 function playRound() {
     const playerSelection = playerChoice();
     const botSelection = botChoice();
     const winner = winnerCheck(playerSelection, botSelection);
-    console.log(winner);
+    winners.push(winner);
 }
 
 function playerChoice() {
@@ -57,11 +61,15 @@ function winnerCheck(choiceP, choiceB){
         (choiceP === "water" && choiceB === "fire") ||
         (choiceP === "fire" && choiceB === "grass") 
     ){
-        return "Player";
+        return "Player Wins";
     } else{
-        return "Bot";
+        return "Bot Wins";
     }
 
 }
+
+function logWins(){
+    console.log(winners);
+};
 
 game();
