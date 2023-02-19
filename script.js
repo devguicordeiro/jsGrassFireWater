@@ -7,6 +7,8 @@ function game() {
 function playRound() {
     const playerSelection = playerChoice();
     const botSelection = botChoice();
+    const winner = winnerCheck(playerSelection, botSelection);
+    console.log(winner);
 }
 
 function playerChoice() {
@@ -32,8 +34,8 @@ function playerChoice() {
         input = input.toLowerCase(input);
 
         check = validateInput(input);
-    }
-
+    }return input
+    
 }
 
 function botChoice() {
