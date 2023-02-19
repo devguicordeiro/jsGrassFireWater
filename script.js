@@ -20,8 +20,18 @@ function playerChoice() {
     
     let check = validateInput(input)
     
-    if(check == true) {
-        console.log(input);
+    while (check == false) {
+        input = prompt(
+            "You probabily write it wrong, try again."
+        );
+        
+        while (input == null) {
+            input = prompt("Type Grass, Water or Fire")
+        }
+        
+        input = input.toLowerCase(input);
+
+        check = validateInput(input);
     }
 
 }
@@ -35,6 +45,21 @@ function validateInput(choice){
         return true;
     }
     return false;
+}
+
+function winnerCheck(choiceP, choiceB){
+    if(choiceP === choiceB){
+        return "Tie";
+    } else if(
+        (choiceP === "grass" && choiceB === "water") ||
+        (choiceP === "water" && choiceB === "fire") ||
+        (choiceP === "fire" && choiceB === "grass") 
+    ){
+        return "Player";
+    } else{
+        return "Bot";
+    }
+
 }
 
 game();
