@@ -1,23 +1,23 @@
-*{
-    font-family: sans-serif;
-    font-weight: 700;
+* {
+  font-family: sans-serif;
+  font-weight: 700;
 }
 
-button{
-    font-size: 30px;
-    padding: 10px;
-    border-radius: 20px;
-    margin: 30px
+button {
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 30px;
 }
 
-button:hover{
-    cursor: pointer;
-    background-color: greenyellow;
+button:hover {
+  cursor: pointer;
+  background-color: greenyellow;
 }
 
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
