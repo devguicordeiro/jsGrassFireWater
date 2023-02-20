@@ -2,5 +2,6 @@
 
 starting "first" js project
 
-almost crying, but things is working out fine
-after almost going crazy
+20.02.2023
+
+upgrading game to not only operates in terminal but also have an user interface
