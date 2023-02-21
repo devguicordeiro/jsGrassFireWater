@@ -4,18 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grass Fire Water Pokémon Battle</title>
+    <title>Pokémon Type Battle</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <div class="container">
-      <h1>Pokémon Type Battle</h1>
-      <button onclick="game()">Start Game</button>
-      <p>
-        For now, the game only works in the console. Press f12 and go head to
-        the console window to see the results.
-      </p>
+    <header>
+      <h1>Type Effectiveness</h1>
+    </header>
+    <div class="winnerDiv">
+      <button class="playAgain" onclick="restartGame()">More one game</button>
+    </div>
+    <div class="playerSelection">
+      <p class="playerChoice"></p>
+      <p class="playerScore">Score: 0</p>
+      <div class="playerBadges">
+        <img
+          src="./images/Grass type.ico"
+          alt="grass badge icon"
+          class="pBadge"
+          id="grass"
+        />
+        <img
+          src="./images/Fire type.ico"
+          alt="fire badge icon"
+          class="pBadge"
+          id="fire"
+        />
+        <img
+          src="./images/Water type.ico"
+          alt="water badge icon"
+          class="pBadge"
+          id="water"
+        />
+      </div>
+    </div>
+
+    <div class="botSelection">
+      <p class="botChoice"></p>
+      <p class="botScore">Score: 0</p>
+      <div class="botBadges">
+        <img
+          src="./images/Grass type.ico"
+          alt="grass badge icon"
+          class="grass"
+        />
+        <img src="./images/Fire type.ico" alt="fire badge icon" class="fire" />
+        <img
+          src="./images/Water type.ico"
+          alt="water badge icon"
+          class="water"
+        />
+      </div>
     </div>
   </body>
 </html>
