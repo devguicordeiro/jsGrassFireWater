@@ -5,17 +5,18 @@ function restartGame()
 
 function game() {
   let imgs = documento.querySelectorAll("img")
-  imgs.forEach((img) => img.addEventListener(("click"), () => {
+  imgs.forEach((img) => img.addEventListener("click", () => {
     if(img.id){
       playRound(img.id)
     }
-  } ))
+  })
+  );
 }
 
 function playRound(playerChoice) {
 
   let wins = roundWinsCheck()
-    if(wins >= 5){
+    if(wins >= 3){
       return
     }
 
@@ -26,6 +27,30 @@ function playRound(playerChoice) {
   winners.push(winner);
 
   tallyWins();
+  
+  displayRound(playerChoice, botChoice, winner);
+
+  wins = roundWinsCheck();
+    if(wins == 3) {
+      displayEnd();
+    }
+}
+
+function displayEnd() {
+  let playerWins = winners.filter((item) => item == "Player").length;
+
+    if(playerWins = 3) {
+      document.querySelector(".winner").textContent = "You won the best of 5, you're awesome!"
+    } else {
+      document.querySelector(".winner").textContent = "Buahh! You lose. The bot won the best of 5."
+    }
+      document.querySelector(".reset").style.display = "flex";
+}
+
+function displayRound(playerChoice, botChoice, winner) {
+  document.querySelector(".playerChoice").textContent = `You Chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`;
+  document.querySelector(".botChoice").textContent = `The bot Chose: ${botChoice.charAt(0).toUpperCase() + botChoice.slice(1)}` ;
+  document.querySelector(".winner").textContent = `Round Winner: ${winner}`;
 }
 
 function tallyWins() {
