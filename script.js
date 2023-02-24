@@ -4,12 +4,13 @@ let winners = [];
 function restartGame()
 
 function game() {
-  let imgs = documento.querySelectorAll("img")
-  imgs.forEach((img) => img.addEventListener("click", () => {
-    if(img.id){
-      playRound(img.id)
-    }
-  })
+  
+  let imgs = document.querySelectorAll("img");
+    imgs.forEach((img) => img.addEventListener("click", () => {
+      if(img.id){
+        playRound(img.id);
+      }
+    })
   );
 }
 
@@ -17,12 +18,12 @@ function playRound(playerChoice) {
 
   let wins = roundWinsCheck()
     if(wins >= 3){
-      return
+      return;
     }
 
-  const botSelection = botChoice();
+  const botChoice = botSelect();
 
-  const winner = winnerCheck(playerSelection, botSelection);
+  const winner = winnerCheck(playerChoice, botChoice);
 
   winners.push(winner);
 
@@ -60,13 +61,13 @@ function tallyWins() {
   document.querySelector(".botScore").textContent = `Score: ${botWins}`;
 }
 
-function botChoice() {
+function botSelect() {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function roundWinsCheck() {
-  let playerWins = winners.filter((item) => item == "Player").length;
-  let botWins = winners.filter((item) => item == "Bot").length;
+  const playerWins = winners.filter((item) => item == "Player").length;
+  const botWins = winners.filter((item) => item == "Bot").length;
   return Math.max(playerWins, botWins)
 }
 
@@ -85,9 +86,9 @@ function winnerCheck(choiceP, choiceB) {
 }
 
 function logWins() {
-  let playerWins = winners.filter((item) => item == "Player").length;
-  let botWins = winners.filter((item) => item == "Bot").length;
-  let ties = winners.filter((item) => item == "Tie").length;
+  const playerWins = winners.filter((item) => item == "Player").length;
+  const botWins = winners.filter((item) => item == "Bot").length;
+  const ties = winners.filter((item) => item == "Tie").length;
 }
 
 game();
