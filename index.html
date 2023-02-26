@@ -4,60 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokémon Type Battle</title>
-    <script src="script.js" defer></script>
+    <title>Rock Paper Scissors with UI</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
-    <header>
-      <h1>Type Effectiveness</h1>
-    </header>
-    <div class="winnerDiv">
-      <button class="playAgain" onclick="restartGame()">More one game</button>
+    <div class="score">
+      <h1 class="ties">Ties: 0</h1>
     </div>
-    <div class="playerSelection">
-      <p class="playerChoice"></p>
-      <p class="playerScore">Score: 0</p>
-      <div class="playerBadges">
+    <div class="winnerDiv">
+      <h1 class="winner"></h1>
+      <button class="reset" onclick="resetGame()">Play Again?</button>
+    </div>
+    <div class="playerSection">
+      <h3 class="playerChoice"></h3>
+      <h3 class="playerScore">Score: 0</h3>
+      <div class="playerImgs">
+        <img src="./images/Fire type.ico" alt="Rock" class="pImg" id="rock" />
         <img
           src="./images/Grass type.ico"
-          alt="grass badge icon"
-          class="pBadge"
-          id="grass"
-        />
-        <img
-          src="./images/Fire type.ico"
-          alt="fire badge icon"
-          class="pBadge"
-          id="fire"
+          alt="Paper"
+          class="pImg"
+          id="paper"
         />
         <img
           src="./images/Water type.ico"
-          alt="water badge icon"
-          class="pBadge"
-          id="water"
+          alt="Scissors"
+          class="pImg"
+          id="scissors"
         />
       </div>
     </div>
-
-    <div class="botSelection">
-      <p class="botChoice"></p>
-      <p class="botScore">Score: 0</p>
-      <div class="botBadges">
-        <img
-          src="./images/Grass type.ico"
-          alt="grass badge icon"
-          class="grass"
-        />
-        <img src="./images/Fire type.ico" alt="fire badge icon" class="fire" />
-
-        <img
-          src="./images/Water type.ico"
-          alt="water badge icon"
-          class="water"
-        />
+    <div class="computerSection">
+      <h3 class="computerChoice"></h3>
+      <h3 class="computerScore">Score: 0</h3>
+      <div class="computerImgs">
+        <img src="./images/Fire type.ico" alt="Rock" class="rock" />
+        <img src="./images/Grass type.ico" alt="Paper" class="paper" />
+        <img src="./images/Water type.ico" alt="Scissors" class="scissors" />
       </div>
     </div>
   </body>
+  <script src="script.js"></script>
 </html>
