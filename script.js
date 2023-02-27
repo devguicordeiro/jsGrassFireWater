@@ -1,90 +1,119 @@
-const choices = ["grass", "water", "fire"];
-const winners = [];
+let winners = [];
+const choices = ["grass", "fire", "water"];
 
-function game() {
-    for(let i = 1; i <= 5; i++){
-        playRound(i);
-    }
-    document.querySelector("button").textContent = "Play Again";
-    logWins();
+function resetGame() {
+  winners = [];
+  document.querySelector(".playerScore").textContent = "Score: 0";
+  document.querySelector(".botScore").textContent = "Score: 0";
+  document.querySelector(".winner").textContent = "";
+  document.querySelector(".playerChoice").textContent = "";
+  document.querySelector(".botChoice").textContent = "";
+  document.querySelector(".reset").style.display = "none";
 }
 
-function playRound(round) {
-    const playerSelection = playerChoice();
-    const botSelection = botChoice();
-    const winner = winnerCheck(playerSelection, botSelection);
-    winners.push(winner);
-    logRound(playerSelection, botSelection, winner, round)
+function startGame() {
+  let imgs = document.querySelectorAll("img");
+  imgs.forEach((img) =>
+    img.addEventListener("click", () => {
+      if (img.id) {
+        playRound(img.id);
+      }
+    })
+  );
 }
 
-function playerChoice() {
-    let input = prompt("Type Grass, Water or Fire");
-    
-    while (input == null) {
-        input = prompt("Type Grass, Water or Fire")
-    }
-    
-    input = input.toLowerCase();
-    
-    let check = validateInput(input)
-    
-    while (check == false) {
-        input = prompt(
-            "You probabily write it wrong, try again."
-        );
-        
-        while (input == null) {
-            input = prompt("Type Grass, Water or Fire")
-        }
-        
-        input = input.toLowerCase(input);
+function playRound(playerChoice) {
+  let wins = checkWins();
+  if (wins >= 3) {
+    return;
+  }
 
-        check = validateInput(input);
-    }return input
-    
+  const botChoice = botSelect();
+
+  const winner = checkWinner(playerChoice, botChoice);
+  winners.push(winner);
+  tallyWins();
+  displayRound(playerChoice, botChoice, winner);
+  wins = checkWins();
+  if (wins == 3) {
+    displayEnd();
+  }
 }
 
-function botChoice() {
-    return choices[Math.floor(Math.random()*choices.length)]
+function displayEnd() {
+  let playerWins = winners.filter((item) => item == "Player").length;
+
+  if (playerWins == 3) {
+    document.querySelector(".winner").textContent =
+      "Congrats! You Won the best of 5";
+  } else {
+    document.querySelector(".winner").textContent =
+      "The random trainer beat you! Wanna play another game?";
+  }
+  document.querySelector(".reset").style.display = "flex";
 }
 
-function validateInput(choice){
-    if (choices.includes(choice)) {
-        return true;
-    }
-    return false;
+function displayRound(playerChoice, botChoice, winner) {
+  document.querySelector(".playerChoice").textContent = `You Chose: ${
+    playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)
+  }`;
+  document.querySelector(".botChoice").textContent = `The Bot Chose: ${
+    botChoice.charAt(0).toUpperCase() + botChoice.slice(1)
+  }`;
+  displayRoundWinner(winner);
 }
 
-function winnerCheck(choiceP, choiceB){
-    if(choiceP === choiceB){
-        return "Tie";
-    } else if(
-        (choiceP === "grass" && choiceB === "water") ||
-        (choiceP === "water" && choiceB === "fire") ||
-        (choiceP === "fire" && choiceB === "grass") 
-    ){
-        return "Player";
-    } else{
-        return "Bot";
-    }
-
+function displayRoundWinner(winner) {
+  if (winner == "Player") {
+    document.querySelector(".winner").textContent = "You won the Round!";
+  } else if (winner == "Bot") {
+    document.querySelector(".winner").textContent = "The Bot won the Round";
+  } else {
+    document.querySelector(".winner").textContent = "The Round was a tie";
+  }
 }
 
-function logWins() {
-    let playerWins = winners.filter((item) => item == "Player").length;
-    let botWins = winners.filter((item) => item == "Bot").length;
-    let ties = winners.filter((item) => item == "Tie").length;
-    console.log("Results:");
-    console.log("Players Wins:", playerWins);
-    console.log("Bot Wins:", botWins);
-    console.log("Tie:", ties);
-
+function tallyWins() {
+  const pWinsC = winners.filter((item) => item == "Player").length;
+  const cWinsC = winners.filter((item) => item == "Bot").length;
+  document.querySelector(".playerScore").textContent = `Score: ${pWinsC}`;
+  document.querySelector(".botScore").textContent = `Score: ${cWinsC}`;
 }
 
-function logRound(playerChoice, botChoice, winner, round){
-    console.log("Round", round);
-    console.log("Player chose:", playerChoice);
-    console.log("Bot chose:", botChoice);
-    console.log(winner, "won the round");
-    console.log("---------------------");
+function botSelect() {
+  const choice = choices[Math.floor(Math.random() * choices.length)];
+
+  document.querySelector(`.${choice}`).classList.add("active");
+
+  setTimeout(() => {
+    document.querySelector(`.${choice}`).classList.remove("active");
+  }, 700);
+
+  return choice;
 }
+
+function checkWins() {
+  const pWinsC = winners.filter((item) => item == "Player").length;
+  const cWinsC = winners.filter((item) => item == "Bot").length;
+  return Math.max(pWinsC, cWinsC);
+}
+
+function checkWinner(choice1, choice2) {
+  if (
+    (choice1 == "grass" && choice2 == "water") ||
+    (choice1 == "water" && choice2 == "fire") ||
+    (choice1 == "fire" && choice2 == "grass")
+  ) {
+    return "Player";
+  } else if (choice1 == choice2) {
+    return "Tie";
+  } else {
+    return "Bot";
+  }
+}
+
+function setWins() {
+  const pWinsC = winners.filter((item) => item == "Player").length;
+  const cWinsC = winners.filter((item) => item == "Bot").length;
+}
+startGame();
