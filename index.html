@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock Paper Scissors with UI</title>
+    <title>Effectiveness Game</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="score">
-      <h1 class="ties">Ties: 0</h1>
+      <h1>Pokémon Type Effectiveness Game</h1>
     </div>
     <div class="winnerDiv">
       <h1 class="winner"></h1>
@@ -19,28 +19,41 @@
       <h3 class="playerChoice"></h3>
       <h3 class="playerScore">Score: 0</h3>
       <div class="playerImgs">
-        <img src="./images/Fire type.ico" alt="Rock" class="pImg" id="rock" />
         <img
           src="./images/Grass type.ico"
-          alt="Paper"
+          alt="grass badge icon"
           class="pImg"
-          id="paper"
+          id="grass"
+        />
+        <img
+          src="./images/Fire type.ico"
+          alt="fire badge icon"
+          class="pImg"
+          id="fire"
         />
         <img
           src="./images/Water type.ico"
-          alt="Scissors"
+          alt="water badge icon"
           class="pImg"
-          id="scissors"
+          id="water"
         />
       </div>
     </div>
-    <div class="computerSection">
-      <h3 class="computerChoice"></h3>
-      <h3 class="computerScore">Score: 0</h3>
-      <div class="computerImgs">
-        <img src="./images/Fire type.ico" alt="Rock" class="rock" />
-        <img src="./images/Grass type.ico" alt="Paper" class="paper" />
-        <img src="./images/Water type.ico" alt="Scissors" class="scissors" />
+    <div class="botSection">
+      <h3 class="botChoice"></h3>
+      <h3 class="botScore">Score: 0</h3>
+      <div class="botImgs">
+        <img
+          src="./images/Grass type.ico"
+          alt="grass badge icon"
+          class="grass"
+        />
+        <img src="./images/Fire type.ico" alt="fire badge icon" class="fire" />
+        <img
+          src="./images/Water type.ico"
+          alt="water badge icon"
+          class="water"
+        />
       </div>
     </div>
   </body>
