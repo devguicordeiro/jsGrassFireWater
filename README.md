@@ -7,3 +7,7 @@ days but a little less than usual.
 
 it was actually really fun working on this project. i'll be moving forward with
 the studiying of JS and probabilly after a while get into reactJS
+</br>
+if you liked this project, consider give a star in the github repository:
+</br>
+https://github.com/devguicordeiro
